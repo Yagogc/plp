@@ -1,3 +1,4 @@
+import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import React from 'react'
 
 import useLikeStore from '../state/client/likeStore'
@@ -14,7 +15,13 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const handleClick = () => toggleLikedProductId(product.id)
 
   return (
-    <div className="flex flex-col w-full gap-2 p-4 bg-white rounded shadow">
+    <motion.div
+      layoutId={product.id}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="flex flex-col w-full gap-2 p-4 bg-white rounded shadow"
+    >
       <div className="relative h-40 overflow-hidden rounded">
         <img
           src={imageUrl}
@@ -44,7 +51,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       <div>{product.brand}</div>
       <div>{product.size}</div>
       <div className="font-bold">{product.price}</div>
-    </div>
+    </motion.div>
   )
 }
 

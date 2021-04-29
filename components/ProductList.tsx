@@ -1,12 +1,12 @@
+import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 import { ProductCard } from '../components/ProductCard'
-import { useProducts } from '../state/server/getProducts'
+import { Product, useProducts } from '../state/server/getProducts'
 
-const ProductList = () => {
+const useFilteredProducts = (data: Product[]) => {
   const [hideSoldProducts, setHideSoldProducts] = useState(false)
   const [filteredItems, setFilteredItems] = useState([])
-  const { data, error, isError, isLoading } = useProducts()
 
   useEffect(() => {
     if (hideSoldProducts && !!data) {
@@ -15,6 +15,17 @@ const ProductList = () => {
       setFilteredItems(data)
     }
   }, [hideSoldProducts, data, setFilteredItems])
+
+  return { hideSoldProducts, setHideSoldProducts, filteredItems }
+}
+
+const ProductList = () => {
+  const { data, error, isError, isLoading } = useProducts()
+  const {
+    hideSoldProducts,
+    setHideSoldProducts,
+    filteredItems,
+  } = useFilteredProducts(data)
 
   return (
     <div>
@@ -35,11 +46,18 @@ const ProductList = () => {
               {hideSoldProducts ? 'Show Sold Items' : 'Hide Sold Items'}
             </button>
           </div>
-          <div className="grid grid-flow-row grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:justify-start">
-            {filteredItems?.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <AnimateSharedLayout>
+            <motion.div
+              layout
+              className="grid grid-flow-row grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:justify-start"
+            >
+              <AnimatePresence>
+                {filteredItems?.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          </AnimateSharedLayout>
         </div>
       )}
     </div>
