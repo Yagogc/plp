@@ -1,18 +1,25 @@
-import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import React from 'react'
 
 import useLikeStore from '../state/client/likeStore'
 import { Product } from '../state/server/getProducts'
 
+const getImg = (product: Product) => {
+  // Trying to make the loremflicker img more accurate with the product
+  const typeOfProduct = product.brand.split(' ').pop()
+
+  return `https://loremflickr.com/320/240/${typeOfProduct}?random=${product.id}`
+}
+
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
-  // Dirty override of the placeholder image to avoid HTTPS issues
-  const imageUrl = `https://loremflickr.com/320/240/product?random=${product.id}`
   const likedProductsId = useLikeStore((state) => state.likedProductsId)
   const toggleLikedProductId = useLikeStore(
     (state) => state.toggleLikedProductId
   )
   const isLiked = likedProductsId.includes(product.id)
   const handleClick = () => toggleLikedProductId(product.id)
+  // Dirty override of the placeholder image to avoid HTTPS issues
+  const imageUrl = getImg(product)
 
   return (
     <motion.div
