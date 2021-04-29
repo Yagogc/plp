@@ -42,3 +42,11 @@ The app was only tested on the following browsers:
 - Firefox iOS (Latest)
 
 The app should be "responsive" enough to adecuate to any screen size.
+
+## TODO
+
+- Improve some UI details
+- Add more test coverage
+- Improve current tests
+- Improve some animations (e.g: LikeList component)
+- Decouple some repeteated components
