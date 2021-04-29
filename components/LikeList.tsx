@@ -45,7 +45,7 @@ const LikeList = () => {
                     transition={{ type: 'tween' }}
                     className="px-2 py-1 whitespace-nowrap"
                   >
-                    No Liked Products
+                    No Liked Items
                   </motion.li>
                 ) : (
                   data
