@@ -21,6 +21,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="flex flex-col w-full gap-2 p-4 bg-white rounded shadow"
+      data-testid="product-card"
     >
       <div className="relative h-40 overflow-hidden rounded">
         <img
