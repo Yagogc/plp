@@ -4,7 +4,7 @@ A few notes regarding the exercise
 
 ## Libraries
 
-I used NextJS because it's my preferred choice. Also, compared to CRA it's easier to implement certain libraries/solutions. e.g: Tailwind requires to override the `react-scripts`.
+I used NextJS because I like it and provides certain benefits (like SSR) without any drawback. Also, compared to CRA it's easier to implement certain libraries/solutions. e.g: Tailwind requires to override the `react-scripts`.
 
 ### Styling
 
@@ -12,13 +12,13 @@ I have choosen Tailwind because it's fast to develop a POC with it. Given more t
 
 ### State management
 
-- Server state: I used `react-query`, my preferred choice due the great and easy to use API.
+- Server state: `react-query`. My goto solution for server state: easy to use, great API, manages cache for your, etc
 - State management: `zustand`. A simple client state that pairs really well with `react-query`.
-- Animations: Framer Motion.
+- Animations: `framer-motion`.
 
 ## Testing
 
-Due to keep the test time boxed I only tested a few things to showcase different test cases:
+Due to time constraints I only tested a few things to showcase different test cases:
 
 - useLikeStore: for testing hooks
 - ProductCard: to test a normal component
@@ -31,7 +31,7 @@ I have added a few of the things I usually like to work with to enhance the prod
 - ESlint & Prettier to deal with lint and formatting
   - I use `Alloy` as the main ESLint config: [eslint-config-alloy](https://github.com/AlloyTeam/eslint-config-alloy)
 - Husky and lint-staged to automate the previous point and some safe checks
-- NVM for align all enviroments node versions
+- NVM to align node version
 
 ## Other
 
@@ -41,4 +41,4 @@ The app was only tested on the following browsers:
 - Microsoft Edge (Latest)
 - Firefox iOS (Latest)
 
-The app should be "responsive" enough to adecuate to any screen.
+The app should be "responsive" enough to adecuate to any screen size.
